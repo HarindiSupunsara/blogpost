@@ -6,8 +6,9 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,8 +28,9 @@ import lombok.Setter;
 public class AdminUserEntity {
 	
 	@Id
-	@Column(name = "pid", nullable = false)
-	private String pid;
+	@Column(name = "id", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
 	@Column(name = "user_name")
 	private String userName;
@@ -55,7 +57,7 @@ public class AdminUserEntity {
 	private Date createDate;
 	
 	@Column(name = "is_superadm")
-	private Boolean isSuperadmin;
+	private Boolean superadmin;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "adminUserEntity", targetEntity = BlogPostEntity.class)
